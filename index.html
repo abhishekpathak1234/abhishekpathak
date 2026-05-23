@@ -1,10 +1,12 @@
-<!DOCTYPE html><html class="scroll-smooth" lang="en" style="width: 1315px; height: 20088px; overflow: hidden; position: relative;"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>AutoSales AI | Mission Critical Automotive Infrastructure</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@300;400;500;600;700&amp;family=Source+Serif+4:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -57,7 +59,10 @@
                 "tertiary-fixed-dim": "#51df8e",
                 "on-secondary-container": "#f3f3ff",
                 "surface-container": "#f0edec",
-                "on-error-container": "#93000a"
+                "on-error-container": "#93000a",
+                "alpha-blue": "#0ea5e9",
+                "alpha-graphite": "#121212",
+                "alpha-silver": "#e2e8f0"
             },
             "borderRadius": {
                 "DEFAULT": "0.125rem",
@@ -102,6 +107,12 @@
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
         }
+        .alpha-glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
         .ai-pulse {
             position: relative;
         }
@@ -132,46 +143,78 @@
             -webkit-text-stroke: 1px currentColor;
             -webkit-text-fill-color: transparent;
         }
+        .grid-bg {
+            background-image: radial-gradient(circle, #ab3500 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .alpha-network-bg {
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(171, 53, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(171, 53, 0, 0.08) 0%, transparent 50%);
+        }
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 45%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 55%
+            );
+            animation: shine 6s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            100% { transform: translateX(100%) translateY(100%); }
+        }
     </style>
 </head>
-<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<body class="bg-background text-on-background font-body-md overflow-x-hidden min-h-screen">
 <!-- Top Navigation Bar -->
 <nav class="fixed top-0 w-full z-50 bg-white/10 backdrop-blur-2xl shadow-[0px_50px_100px_-20px_rgba(0,0,0,0.08)]">
 <div class="flex justify-between items-center px-margin-desktop py-6 w-full max-w-[1440px] mx-auto">
-<div class="font-display-2xl text-headline-lg-mobile text-on-surface dark:text-on-background tracking-tighter">AutoSales AI</div>
+<div class="font-display-2xl text-headline-lg-mobile text-on-surface tracking-tighter">AutoSales AI</div>
 <div class="hidden md:flex gap-8 font-label-mono text-label-mono uppercase tracking-widest">
 <a class="text-primary border-b-2 border-primary transition-colors duration-300" href="#">Platform</a>
 <a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Infrastructure</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Inventory</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Case Studies</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Integration</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Network</a>
 </div>
 <div class="flex items-center gap-6">
 <div class="hidden lg:flex items-center gap-2 font-label-mono text-label-mono text-tertiary">
 <span class="w-2 h-2 rounded-full bg-tertiary ai-pulse" style="opacity: 0.5;"></span>
-                    System Status: Online
-                </div>
+                System Status: Active
+            </div>
 <button class="bg-primary px-6 py-3 rounded-sm text-on-primary font-label-mono uppercase tracking-widest scale-95 duration-200 ease-in-out active:opacity-80">
-                    Deploy AI Workforce
-                </button>
+                Book a Demo
+            </button>
 </div>
 </div>
 </nav>
 <!-- Hero Section -->
-<header class="relative min-h-screen pt-40 pb-section-gap overflow-hidden">
+<header class="relative min-h-screen pt-40 pb-section-gap overflow-hidden bg-surface">
 <!-- Floating Live Notifications -->
 <div class="absolute right-margin-desktop top-64 z-20 space-y-4">
 <div class="floating-notification glass-panel px-4 py-3 rounded shadow-lg border-l-4 border-primary-container max-w-xs">
 <div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: &quot;FILL&quot; 1;">smart_toy</span>
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
 <div>
 <p class="font-label-mono text-[10px] uppercase text-outline">AI Receptionist</p>
-<p class="text-body-md font-bold">Booked Tesla Model Y test drive</p>
+<p class="text-body-md font-bold">Booked Luxury SUV test drive</p>
 </div>
 </div>
 </div>
 <div class="floating-notification glass-panel px-4 py-3 rounded shadow-lg border-l-4 border-tertiary max-w-xs animation-delay-1000">
 <div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: &quot;FILL&quot; 1;">payments</span>
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">payments</span>
 <div>
 <p class="font-label-mono text-[10px] uppercase text-outline">Revenue Recovery</p>
 <p class="text-body-md font-bold">Captured $4,200 lost lead</p>
@@ -182,25 +225,24 @@
 <div class="container mx-auto px-margin-desktop relative z-10">
 <div class="max-w-4xl">
 <h1 class="font-display-2xl text-display-2xl-mobile md:text-display-2xl leading-none mb-8">
-                    AI Employees That <span class="text-primary italic">Sell Cars</span> While You Sleep
-                </h1>
+                AI Employees That <span class="text-primary italic">Sell Cars</span> While You Sleep
+            </h1>
 <p class="font-body-lg text-on-surface-variant max-w-2xl mb-12">
-                    AutoSales AI answers calls, responds to leads, books appointments, and recovers missed revenue automatically — 24/7. Mission-critical infrastructure for the modern dealership.
-                </p>
+                AutoSales AI answers calls, responds to leads, books appointments, and recovers missed revenue automatically — 24/7. Mission-critical infrastructure for the modern dealership.
+            </p>
 <div class="flex flex-wrap gap-4">
-<button class="bg-primary-container px-10 py-5 rounded-sm text-on-primary-container font-label-mono text-lg uppercase tracking-widest hover:scale-105 transition-transform">
-                        Activate AI Workforce
-                    </button>
+<button class="bg-primary-container px-10 py-5 rounded-sm text-on-primary-container font-label-mono text-lg uppercase tracking-widest hover:scale-105 transition-transform">Book a Demo</button>
 <button class="border border-outline px-10 py-5 rounded-sm font-label-mono text-lg uppercase tracking-widest hover:bg-surface-variant transition-colors">
-                        View Live Terminal
-                    </button>
+                    View Technical Specs
+                </button>
 </div>
 </div>
 <!-- Layered Dashboard Visual -->
 <div class="relative mt-24 h-[600px] w-full">
-<!-- Base Layer -->
+<!-- Base Layer - Hero Image -->
 <div class="absolute inset-0 bg-surface-container-high rounded-xl overflow-hidden shadow-2xl">
-<img alt="Advanced AI Dashboard Interface" class="w-full h-full object-cover opacity-20 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDit7rbF5z-SIc2b9V--ORXKhb1E8cPwu20qf1LIfkWJugM7zWMymtinxxJJcEGv04gm8mZH11LlT3S3cFSG7mlkPMq9C_azDJZ2Lf3FxnY4sEi_gnKfD3xFzJLcfto28wbFH0JhDDLNi1a1lq1wSh3R44_N7OTykOqOT-sRfzL_5Vn_IA-tdFNhJ45FmqkcIBE0rFFHeRgW0IvX4sjGjLIn84rJiUw9OjE98Rfih7GU3lsHTUfe_EY4l8pBZjOL-O0oDHUtQ7n8as">
+<img alt="Modern black Ford F-150 in showroom" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uiBba1sfh0iE2htDAsCkINwbn1WhUu-UExm4QxMxus15Vmql5yvafi-F5E4rraMzfK3_yYnDIewtSVG10_vtK3WGZi_PKwZ6I7HaJqnB5Agv_L9bsjz1-Rl4qIemN8NIAKTBhUATpAQNKovFtIh_HVhjSi5RE3SWPgQZ4ZCYFqzDrBTuL_ZJjxqVAXqOehmjwo0Q1pnrCOo_TSbW-OWo4wTvU9VWQe6bXU1HZwFbqs_ExLjcwsmHdK9ig"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
 </div>
 <!-- Floating Glass Panel 1: Live Lead Stream -->
 <div class="absolute -left-12 top-20 glass-panel p-8 rounded-xl shadow-[0px_50px_100px_-20px_rgba(0,0,0,0.1)] max-w-md border border-white/40 z-30">
@@ -228,7 +270,7 @@
 <div class="grid grid-cols-2 gap-8">
 <div>
 <p class="font-label-mono text-outline uppercase mb-2">Appointments Booked</p>
-<p class="font-display-2xl text-headline-lg text-primary tracking-tighter">300,000</p>
+<p class="font-display-2xl text-headline-lg text-primary tracking-tighter">1,000+</p>
 <div class="h-1 w-full bg-surface-container mt-2">
 <div class="h-full bg-primary w-3/4"></div>
 </div>
@@ -243,60 +285,55 @@
 </div>
 <div class="mt-8 pt-8 border-t border-outline-variant">
 <p class="font-label-mono text-outline uppercase mb-2">Recovered Missed Revenue</p>
-<p class="font-display-2xl text-headline-lg-mobile text-on-surface font-extrabold">$300,000</p>
-</div>
-</div>
-<!-- Central Visual Focus: Ford F-150 Lightning -->
-<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] h-[85%] z-20 pointer-events-none flex items-center justify-center">
-<div class="relative w-full h-full">
-<img alt="Modern black Ford F-150 Lightning electric truck" class="w-full h-full object-contain drop-shadow-[0_45px_45px_rgba(0,0,0,0.3)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA21CjvJYOfUwZ0XmQqx5dhjOCiyqnk1b3Sdg4wUb8gSkbklgk5Zc36YjC07iJaYruczRqjsWtj2bu0nyzQToZ9tHuRBUOwbHaBJgRiRy9Svsqgu4egyCRnxX8XTeezj01NowB6fD2nosHqWg-EAeLDYqb2BvR1uI8w74GECF2i9o9TghHhsLSGOjFhcrcVZo1J0Gr1hqXoh1U0_0AWaS1ZeYaErQUfaVKnkKRCbshQgtKPvgYR4Y-iTiaGx_iRb4ou6UsT3P5TuH4">
+<p class="font-display-2xl text-headline-lg-mobile text-on-surface font-extrabold">$300,000 USD per Dealership</p>
 </div>
 </div>
 </div>
 </div>
 </header>
-<!-- Reliability Standards: Bold Infrastructure Section -->
+<!-- Infrastructure Pillars Section -->
 <section class="py-section-gap bg-surface relative overflow-hidden">
 <!-- Technical Grid Decoration -->
-<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(circle, #ab3500 1px, transparent 1px); background-size: 40px 40px;"></div>
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none grid-bg"></div>
 <div class="container mx-auto px-margin-desktop relative z-10">
 <div class="flex flex-col lg:flex-row gap-gutter items-start">
 <!-- Left Header Area -->
 <div class="lg:w-1/3 sticky top-32">
-<span class="font-label-mono text-primary uppercase tracking-[0.2em] mb-4 block underline decoration-2 underline-offset-8">Reliability Standards</span>
+<span class="font-label-mono text-primary uppercase tracking-[0.2em] mb-4 block underline decoration-2 underline-offset-8">Infrastructure Pillars</span>
 <h2 class="font-display-2xl text-headline-lg md:text-display-2xl leading-[0.9] mb-8">
-                    MISSION <br>CRITICAL<br><span class="text-outline-mask text-primary">INTEL</span>
+                    BORN FOR<br/>SCALE &amp;<br/><span class="text-outline-mask text-primary">RELIABILITY</span>
 </h2>
-<p class="font-body-lg text-on-surface-variant max-w-sm">
-                    A frictionless transition from manual chaos to autonomous high-performance sales infrastructure.
-                </p>
+<p class="font-body-lg text-on-surface-variant max-w-sm mb-12">Distribution hijack infrastructure: We don't create demand, we plug into lead marketplaces and phone systems that already exist. A frictionless transition to autonomous high-performance sales.</p>
+<button class="bg-primary px-8 py-4 rounded-sm text-on-primary font-label-mono uppercase tracking-widest hover:opacity-90 transition-opacity">
+                    Book a Demo
+                </button>
 </div>
 <!-- Right Bold Benefit Area -->
 <div class="lg:w-2/3 space-y-12">
 <!-- Pillar 1 -->
 <div class="relative group">
-<div class="absolute -left-12 top-0 text-[120px] font-display-2xl text-primary/5 leading-none select-none">2</div>
+<div class="absolute -left-12 top-0 text-[120px] font-display-2xl text-primary/5 leading-none select-none">01</div>
 <div class="glass-panel p-16 rounded-xl shadow-2xl border-l-[12px] border-primary transform transition-transform duration-500 hover:-translate-y-2 hover:shadow-primary/10">
 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
 <div>
-<h3 class="font-display-2xl text-headline-lg md:text-5xl tracking-tighter mb-4">Works with your existing CRM</h3>
-<p class="font-body-lg text-on-surface-variant max-w-lg">Native bidirectional sync with VinSolutions, CDK, and DealerSocket. Zero data silos. Our AI lives where your data lives.</p>
+<h3 class="font-display-2xl text-headline-lg md:text-5xl tracking-tighter mb-4">Native System Integration</h3>
+<p class="font-body-lg text-on-surface-variant max-w-lg">Native bidirectional sync with major dealer platforms. Zero data silos. Our AI lives where your data lives.</p>
 </div>
 <span class="material-symbols-outlined text-6xl text-primary opacity-20 group-hover:opacity-100 transition-opacity" data-weight="fill">hub</span>
 </div>
 <div class="mt-8 flex gap-4">
-<span class="font-label-mono text-[10px] bg-primary/10 text-primary px-3 py-1 rounded">VINSOLUTIONS_READY</span>
-<span class="font-label-mono text-[10px] bg-primary/10 text-primary px-3 py-1 rounded">CDK_INTEGRATED</span>
+<span class="font-label-mono text-[10px] bg-primary/10 text-primary px-3 py-1 rounded">PLATFORM_READY</span>
+<span class="font-label-mono text-[10px] bg-primary/10 text-primary px-3 py-1 rounded">SYSTEM_INTEGRATED</span>
 </div>
 </div>
 </div>
 <!-- Pillar 2 -->
 <div class="relative group translate-x-4">
-<div class="absolute -left-12 top-0 text-[120px] font-display-2xl text-primary/5 leading-none select-none">3</div>
-<div class="bg-on-background text-surface p-16 rounded-xl shadow-2xl border-l-[12px] border-primary-container transform transition-transform duration-500 hover:-translate-y-2">
+<div class="absolute -left-12 top-0 text-[120px] font-display-2xl text-primary/5 leading-none select-none">02</div>
+<div class="bg-on-background text-surface p-16 rounded-xl shadow-2xl border-l-[12px] border-primary-container transform transition-transform duration-500 hover:-translate-y-2 ring-4 ring-primary-container/20">
 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
 <div>
-<h3 class="font-display-2xl text-headline-lg md:text-5xl tracking-tighter mb-4 text-primary-container">Live in 30 minutes</h3>
+<h3 class="font-display-2xl text-headline-lg md:text-5xl tracking-tighter mb-4 text-primary-container">Rapid Deployment Protocol</h3>
 <p class="font-body-lg text-surface/70 max-w-lg">Rapid deployment protocol allows your AI workforce to start handling leads today. No months of onboarding.</p>
 </div>
 <span class="material-symbols-outlined text-6xl text-primary-container" data-weight="fill">bolt</span>
@@ -310,7 +347,7 @@
 </div>
 <!-- Pillar 3 -->
 <div class="relative group translate-x-8">
-<div class="absolute -left-12 top-0 text-[120px] font-display-2xl text-primary/5 leading-none select-none">5</div>
+<div class="absolute -left-12 top-0 text-[120px] font-display-2xl text-primary/5 leading-none select-none">03</div>
 <div class="glass-panel p-16 rounded-xl shadow-2xl border-l-[12px] border-tertiary transform transition-transform duration-500 hover:-translate-y-2 hover:shadow-tertiary/10">
 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
 <div>
@@ -328,12 +365,32 @@
 </div>
 </div>
 </section>
-<!-- Meet the AI Workforce -->
+<!-- AI Receptionist Scene / Workforce Section -->
 <section class="py-section-gap bg-on-background text-surface overflow-hidden">
 <div class="container mx-auto px-margin-desktop">
-<div class="mb-20">
-<h2 class="font-display-2xl text-headline-lg md:text-headline-lg tracking-tight mb-4">Meet the AI Workforce</h2>
-<div class="h-1 w-24 bg-primary-container"></div>
+<div class="flex flex-col lg:flex-row items-center gap-16 mb-24">
+<div class="lg:w-1/2">
+<span class="font-label-mono text-primary-container uppercase tracking-widest mb-4 block">Operation: AI Workforce</span>
+<h2 class="font-display-2xl text-headline-lg md:text-headline-lg tracking-tight mb-8">Deploying Unlimited Concurrency</h2>
+<p class="font-body-lg text-surface/70 mb-8 max-w-xl">
+                    Our AI Receptionist handles thousands of simultaneous calls with perfect recall, consistent branding, and immediate data synchronization.
+                </p>
+<div class="flex gap-4">
+<button class="bg-primary-container px-8 py-4 rounded-sm text-on-primary-container font-label-mono uppercase tracking-widest hover:scale-105 transition-transform">Book a Demo</button>
+</div>
+</div>
+<div class="lg:w-1/2 relative">
+<!-- AI Receptionist / Dashboard Visual -->
+<div class="relative rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+<img alt="AI Workforce Dashboard" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugj9la1a5rXVbT3DdPsTfbfp9e-Os-YpoCiJE87jdze5vWUkinct3Ai12kdOQ6XS3VznN7AfH-ZPMiNlX16rogyIfW9Wthr3D13mwQNSKB0t80xaWa9z9GVX0A1RlYv1I9njILn9d0Q90pqoRU_RQGYRDdgRkkFBB7LFfVuegat7KU-pJ4xNx-MuGnDW95w1kApb6-5mB8c90N4-vRHRbQD7d3ExoTOgppUqxa6ZhrPPTCo5ZgM0I6cZLg"/>
+<div class="absolute inset-0 bg-gradient-to-tr from-on-background/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8 p-6 glass-panel border-white/20 rounded-lg max-w-xs">
+<p class="font-label-mono text-primary text-[10px] uppercase mb-2">Active Operations</p>
+<p class="font-bold text-on-surface mb-2">AI Receptionist #42</p>
+<p class="text-sm text-on-surface-variant italic">"I've updated the system with the customer's trade-in details."</p>
+</div>
+</div>
+</div>
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
 <!-- AI Agent Card 1 -->
@@ -350,10 +407,14 @@
 </div>
 <div class="space-y-6">
 <div class="bg-black/20 p-6 rounded border border-white/5">
-<p class="font-label-mono text-[10px] text-outline uppercase mb-4">Current Operation</p>
-<div class="flex gap-4 items-center">
-<span class="material-symbols-outlined text-primary-container ai-pulse" style="opacity: 1;">call</span>
-<p class="font-body-lg italic font-light">"Of course, I can help you with the finance application for the 2024 Tahoe..."</p>
+<p class="font-label-mono text-[10px] text-outline uppercase mb-4">Incoming Inquiry</p>
+<div class="flex gap-4 items-start">
+<span class="material-symbols-outlined text-primary-container mt-1">person</span>
+<p class="font-body-lg italic font-light">"Hi, I'm looking for a 2021 BMW M3 in Brooklyn Grey, is it still available?"</p>
+</div>
+<div class="mt-4 flex gap-4 items-start border-t border-white/10 pt-4">
+<span class="material-symbols-outlined text-tertiary mt-1 ai-pulse" style="opacity: 1;">smart_toy</span>
+<p class="font-body-lg italic font-light text-tertiary-fixed-dim">"Excellent choice. We currently have one 2021 BMW M3 in Brooklyn Grey in our premium inventory. It features the Silverstone interior and executive package. Would you like me to schedule a viewing for you today?"</p>
 </div>
 </div>
 <div class="grid grid-cols-3 gap-4">
@@ -380,7 +441,7 @@
 <h3 class="font-display-2xl text-headline-lg">AI Appointment Setter</h3>
 </div>
 <div class="flex gap-2">
-<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container font-label-mono text-[10px] rounded-full">CRM_WRITE</span>
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container font-label-mono text-[10px] rounded-full">DATA_WRITE</span>
 <span class="px-3 py-1 border border-outline font-label-mono text-[10px] rounded-full">MULTI_LANG</span>
 </div>
 </div>
@@ -389,7 +450,7 @@
 <p class="font-label-mono text-[10px] text-outline uppercase mb-4">Last Action</p>
 <div class="flex gap-4 items-center">
 <span class="material-symbols-outlined text-tertiary">calendar_today</span>
-<p class="font-body-lg italic font-light">Scheduled Test Drive: Saturday, 2:00 PM (Tesla Model Y)</p>
+<p class="font-body-lg italic font-light">Scheduled Test Drive: Saturday, 2:00 PM (Luxury SUV)</p>
 </div>
 </div>
 <div class="grid grid-cols-3 gap-4">
@@ -399,7 +460,7 @@
 </div>
 <div class="text-center p-4 bg-white/5">
 <p class="text-display-2xl text-headline-lg-mobile font-bold">100%</p>
-<p class="font-label-mono text-[9px] text-outline">CRM_UPTIME</p>
+<p class="font-label-mono text-[9px] text-outline">UPTIME</p>
 </div>
 <div class="text-center p-4 bg-white/5">
 <p class="text-display-2xl text-headline-lg-mobile font-bold">24h</p>
@@ -411,130 +472,20 @@
 </div>
 </div>
 </section>
-<!-- Operational Intelligence: Split View -->
-<section class="py-section-gap bg-background">
-<div class="container mx-auto px-margin-desktop">
-<div class="grid grid-cols-1 lg:grid-cols-2 min-h-[600px] border border-outline-variant rounded-2xl overflow-hidden shadow-2xl">
-<!-- Chaotic Manual Operations -->
-<div class="p-16 bg-surface-container-low grayscale opacity-70 border-r border-outline-variant flex flex-col justify-between">
-<div>
-<span class="font-label-mono text-outline uppercase tracking-widest block mb-4">Current State</span>
-<h3 class="font-display-2xl text-headline-lg-mobile mb-8">Chaotic Manual Operations</h3>
-<ul class="space-y-4">
-<li class="flex items-center gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-error">close</span> Missed after-hours calls
-                            </li>
-<li class="flex items-center gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-error">close</span> 45-minute response times
-                            </li>
-<li class="flex items-center gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-error">close</span> Manual CRM entry errors
-                            </li>
-<li class="flex items-center gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-error">close</span> Burned leads due to no follow-up
-                            </li>
-</ul>
-</div>
-<div class="text-outline font-label-mono text-[10px] mt-12">
-                        STATUS: SUBOPTIMAL_REVENUE_RETENTION
-                    </div>
-</div>
-<!-- Autonomous AI Workforce -->
-<div class="p-16 bg-on-background text-surface relative overflow-hidden flex flex-col justify-between">
-<div class="absolute inset-0 opacity-10 pointer-events-none">
-<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,92,26,0.15),transparent_70%)]"></div>
-</div>
-<div class="relative z-10">
-<span class="font-label-mono text-primary-container uppercase tracking-widest block mb-4">The Future</span>
-<h3 class="font-display-2xl text-headline-lg-mobile mb-8">Autonomous AI Workforce</h3>
-<ul class="space-y-4">
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-tertiary-fixed-dim">check_circle</span> 100% call capture rate
-                            </li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-tertiary-fixed-dim">check_circle</span> Instant &lt; 1s lead response
-                            </li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-tertiary-fixed-dim">check_circle</span> Real-time CRM synchronization
-                            </li>
-<li class="flex items-center gap-3">
-<span class="material-symbols-outlined text-tertiary-fixed-dim">check_circle</span> Aggressive multi-channel recovery
-                            </li>
-</ul>
-</div>
-<div class="relative z-10 mt-12">
-<div class="flex items-center gap-4 bg-primary/20 p-4 rounded-lg border border-primary/30">
-<span class="w-3 h-3 rounded-full bg-primary ai-pulse" style="opacity: 1;"></span>
-<p class="font-label-mono text-sm">LIVE_SYSTEM: OPTIMIZING_YIELD_100%</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Infrastructure Deployment (Pricing) -->
-<section class="py-section-gap bg-surface-container-low">
-<div class="container mx-auto px-margin-desktop text-center mb-20">
-<h2 class="font-display-2xl text-headline-lg mb-4">Infrastructure Deployment</h2>
-<p class="text-on-surface-variant font-body-lg">Scale your AI workforce according to your dealership's volume.</p>
-</div>
-<div class="container mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
-<!-- Starter -->
-<div class="glass-panel p-10 rounded-xl shadow-xl hover:-translate-y-2 transition-transform duration-300 border border-white">
-<p class="font-label-mono text-outline mb-2 uppercase">Starter</p>
-<div class="mb-8">
-<span class="text-display-2xl text-headline-lg font-extrabold">$297</span>
-<span class="text-on-surface-variant font-label-mono">/mo</span>
-</div>
-<ul class="text-left space-y-4 mb-10 text-body-md text-on-surface-variant">
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">check</span> 500 Lead Capacity</li>
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">check</span> SMS AI Setter</li>
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">check</span> Single CRM Integration</li>
-</ul>
-<button class="w-full py-4 border border-primary text-primary font-label-mono uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">Start Recovering Leads</button>
-</div>
-<!-- Growth -->
-<div class="bg-on-background text-surface p-12 rounded-xl shadow-2xl scale-110 relative z-20">
-<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary px-4 py-1 rounded-full font-label-mono text-[10px] uppercase">Recommended</div>
-<p class="font-label-mono text-primary-container mb-2 uppercase">Growth</p>
-<div class="mb-8">
-<span class="text-display-2xl text-display-2xl-mobile font-extrabold">$997</span>
-<span class="text-outline font-label-mono">/mo</span>
-</div>
-<ul class="text-left space-y-4 mb-10 text-body-md text-surface/80">
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container">check_circle</span> Unlimited AI Call Handlers</li>
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container">check_circle</span> Multi-Channel AI Workforce</li>
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container">check_circle</span> Priority CRM Sync</li>
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary-container">check_circle</span> Revenue Recovery Protocol</li>
-</ul>
-<button class="w-full py-5 bg-primary-container text-on-primary-container font-label-mono uppercase tracking-widest text-lg hover:scale-105 transition-transform">Deploy Full Cluster</button>
-</div>
-<!-- Enterprise -->
-<div class="glass-panel p-10 rounded-xl shadow-xl hover:-translate-y-2 transition-transform duration-300 border border-white">
-<p class="font-label-mono text-outline mb-2 uppercase">Enterprise</p>
-<div class="mb-8">
-<span class="text-display-2xl text-headline-lg font-extrabold">Custom</span>
-</div>
-<ul class="text-left space-y-4 mb-10 text-body-md text-on-surface-variant">
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">check</span> Dealer Group Control Hub</li>
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">check</span> Dedicated Instance</li>
-<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">check</span> Custom AI Voice Training</li>
-</ul>
-<button class="w-full py-4 border border-outline text-on-surface font-label-mono uppercase tracking-widest hover:bg-surface-variant transition-colors">Contact Protocol Office</button>
-</div>
-</div>
-</section>
-<!-- Operational Proof -->
+<!-- Performance Proof -->
 <section class="py-section-gap bg-surface">
 <div class="container mx-auto px-margin-desktop">
-<h2 class="font-label-mono text-outline text-center uppercase tracking-[0.4em] mb-16">Verified Operational Metrics</h2>
+<div class="text-center mb-20">
+<h2 class="font-label-mono text-outline uppercase tracking-[0.4em] mb-4">Verified Operational Metrics</h2>
+<p class="font-body-lg text-on-surface-variant">The numbers behind the billion-dollar infrastructure.</p>
+</div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
 <!-- Testimonial 1 -->
-<div class="p-8 border-l-2 border-primary-container bg-surface-container-low">
+<div class="p-8 border-l-2 border-primary-container bg-surface-container-low shadow-sm">
 <p class="font-body-lg italic mb-8">"Since deploying AutoSales AI, our appointment set rate has increased by 140%. The AI setters are more consistent than our best human BDC agents ever were."</p>
 <div class="flex items-center gap-4">
 <div class="w-12 h-12 bg-surface-container-highest rounded-full overflow-hidden">
-<img alt="Dealership Principal" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7rBT-U48XfCk7_t-zInO-f_VoyOwAfSfY75RYnZ49VfrkLfOA2TL5n3OKEoL8NtYj0Kao-GjF5_-F3xbmywwGuEvd0YiS-B1QMLV_QWRSKvrndoY3X7nwH36R9doNZTM9lnBDE_6rvVhHGbUFDgWg3US-Oq6AUeedFwGJGLC_lQo6fZArIynxFbZt32-_o64VjcPq6a9HZIadLHI0cs0wNITLgcgq1a3IVt_cR7FxuxEqOVos3U88XxYE-9c8ABPua4uXYUi1NGc">
+<img alt="Mark Stevenson" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7rBT-U48XfCk7_t-zInO-f_VoyOwAfSfY75RYnZ49VfrkLfOA2TL5n3OKEoL8NtYj0Kao-GjF5_-F3xbmywwGuEvd0YiS-B1QMLV_QWRSKvrndoY3X7nwH36R9doNZTM9lnBDE_6rvVhHGbUFDgWg3US-Oq6AUeedFwGJGLC_lQo6fZArIynxFbZt32-_o64VjcPq6a9HZIadLHI0cs0wNITLgcgq1a3IVt_cR7FxuxEqOVos3U88XxYE-9c8ABPua4uXYUi1NGc"/>
 </div>
 <div>
 <p class="font-bold text-on-surface">Mark Stevenson</p>
@@ -547,11 +498,11 @@
 </div>
 </div>
 <!-- Testimonial 2 -->
-<div class="p-8 border-l-2 border-primary-container bg-surface-container-low">
+<div class="p-8 border-l-2 border-primary-container bg-surface-container-low shadow-sm">
 <p class="font-body-lg italic mb-8">"The recovery engine alone paid for the entire system in the first week. We recovered 12 leads that had 'fallen through the cracks' and sold 4 cars from them."</p>
 <div class="flex items-center gap-4">
 <div class="w-12 h-12 bg-surface-container-highest rounded-full overflow-hidden">
-<img alt="General Sales Manager" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpfiBPuNMeW2DwO9UJZJTdgJXROsM4syEIHOT1-1fkeES7cjpJw6gDWrPU8GROXhs9Png7mHFhxw451N86XV0UBZAUVGFx_TV7uqGaHA0mrRk3BbFVGm126ysh6JOOwE7ZUeSkcmPo36n60PgIAxGd0x4H-pMZu75rX6H8WMyc8e44TeM_XBYOIO2osFCu45ZH8178ATcpjm1F0K2zJHeY_eZeKDVH6aawelU4t2LCPwo5gwvxQKEgThFZkul7HdJejkVTyexISOw">
+<img alt="Sarah Chen" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpfiBPuNMeW2DwO9UJZJTdgJXROsM4syEIHOT1-1fkeES7cjpJw6gDWrPU8GROXhs9Png7mHFhxw451N86XV0UBZAUVGFx_TV7uqGaHA0mrRk3BbFVGm126ysh6JOOwE7ZUeSkcmPo36n60PgIAxGd0x4H-pMZu75rX6H8WMyc8e44TeM_XBYOIO2osFCu45ZH8178ATcpjm1F0K2zJHeY_eZeKDVH6aawelU4t2LCPwo5gwvxQKEgThFZkul7HdJejkVTyexISOw"/>
 </div>
 <div>
 <p class="font-bold text-on-surface">Sarah Chen</p>
@@ -564,11 +515,11 @@
 </div>
 </div>
 <!-- Testimonial 3 -->
-<div class="p-8 border-l-2 border-primary-container bg-surface-container-low">
-<p class="font-body-lg italic mb-8">"Zero training required. It hooked into our CDK instance and started answering phone calls immediately. It's the most frictionless piece of software I've ever used."</p>
+<div class="p-8 border-l-2 border-primary-container bg-surface-container-low shadow-sm">
+<p class="font-body-lg italic mb-8">"Zero training required. It hooked into our dealership instance and started answering phone calls immediately. It's the most frictionless piece of software I've ever used."</p>
 <div class="flex items-center gap-4">
 <div class="w-12 h-12 bg-surface-container-highest rounded-full overflow-hidden">
-<img alt="Fixed Operations Director" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTpO4ja8PKifsaOWlBHQ_PzSJ9C6HUV9-mCIKmrCE9qhSe3M7bysbqRJf0zZSRggbl-_lHwjJWCED9MiYBLuTL39Awn-kd_9LClYiNY8-_5tW-M0nGcAjoxNesRvfNmkpyD-sX2KNv_p-jWNa3FY16Y4Of1FxeQ2gjMEC_foludHMw8YXJNENXPRg27XAiaUNyPPrwRR1FHxiNvOdzWmaqW8Y_uzKWNHzrhEBlA_P7hVEkUTbrnyZtMTQTBAMGU5a4s5rbbNNdYIc">
+<img alt="James Wilson" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTpO4ja8PKifsaOWlBHQ_PzSJ9C6HUV9-mCIKmrCE9qhSe3M7bysbqRJf0zZSRggbl-_lHwjJWCED9MiYBLuTL39Awn-kd_9LClYiNY8-_5tW-M0nGcAjoxNesRvfNmkpyD-sX2KNv_p-jWNa3FY16Y4Of1FxeQ2gjMEC_foludHMw8YXJNENXPRg27XAiaUNyPPrwRR1FHxiNvOdzWmaqW8Y_uzKWNHzrhEBlA_P7hVEkUTbrnyZtMTQTBAMGU5a4s5rbbNNdYIc"/>
 </div>
 <div>
 <p class="font-bold text-on-surface">James Wilson</p>
@@ -583,44 +534,110 @@
 </div>
 </div>
 </section>
+<!-- Alpha Drive AI Section (Unified with Kinetic Infrastructure) -->
+<section class="relative bg-surface-dim py-section-gap overflow-hidden alpha-network-bg">
+<!-- Branding Accent -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none grid-bg"></div>
+<div class="container mx-auto px-margin-desktop relative z-10">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col items-center text-center mb-32">
+<span class="font-label-mono text-primary uppercase tracking-[0.5em] mb-6 underline decoration-2 underline-offset-8">Autonomous Strategic Layer</span>
+<h2 class="font-display-2xl text-display-2xl-mobile md:text-[120px] leading-[0.85] tracking-tighter mb-12">
+<span class="text-on-surface block">ALPHA DRIVE</span>
+<span class="text-primary italic">INTELLIGENCE</span>
+</h2>
+<div class="flex flex-wrap justify-center gap-6 mt-4">
+<button class="bg-primary text-on-primary px-12 py-6 rounded-sm font-label-mono text-lg uppercase tracking-widest hover:scale-105 transition-transform duration-300">Deploy AI Workforce</button>
+<button class="bg-transparent border border-outline text-on-surface px-12 py-6 rounded-sm font-label-mono text-lg uppercase tracking-widest hover:bg-surface-variant transition-colors duration-300">Book Strategy Call</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12 font-display-2xl">
+<!-- Advantage 1 -->
+<div class="bg-surface-container-low p-12 md:p-16 rounded-lg border-l-[12px] border-primary group hover:-translate-y-2 transition-all duration-500 shadow-xl">
+<div class="mb-12">
+<span class="text-primary/10 text-8xl font-display-2xl leading-none">01</span>
+</div>
+<p class="text-headline-lg md:text-4xl leading-tight text-on-surface tracking-tight font-semibold">
+                        Autonomous AI sales agents that engage, qualify, and book buyers 24/7 — without expanding dealership staff.
+                    </p>
+<div class="mt-12 h-1 w-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary w-0 group-hover:w-full transition-all duration-700"></div>
+</div>
+</div>
+<!-- Advantage 2 -->
+<div class="bg-on-background text-surface p-12 md:p-16 rounded-lg border-l-[12px] border-primary-container group hover:-translate-y-2 transition-all duration-500 shadow-2xl ring-4 ring-primary-container/10">
+<div class="mb-12">
+<span class="text-primary-container/20 text-8xl font-display-2xl leading-none">02</span>
+</div>
+<p class="text-headline-lg md:text-4xl leading-tight text-surface tracking-tight font-semibold">
+                        Built for automotive retail workflows: inventory discovery, trade-ins, financing assistance, test-drive booking, and instant customer follow-ups.
+                    </p>
+<div class="mt-12 h-1 w-full bg-white/10 overflow-hidden">
+<div class="h-full bg-primary-container w-0 group-hover:w-full transition-all duration-700"></div>
+</div>
+</div>
+<!-- Advantage 3 -->
+<div class="bg-surface-container-low p-12 md:p-16 rounded-lg border-l-[12px] border-tertiary group hover:-translate-y-2 transition-all duration-500 shadow-xl">
+<div class="mb-12">
+<span class="text-tertiary/10 text-8xl font-display-2xl leading-none">03</span>
+</div>
+<p class="text-headline-lg md:text-4xl leading-tight text-on-surface tracking-tight font-semibold">
+                        Reduce lead leakage, increase showroom visits, and accelerate vehicle sales with real-time conversational AI automation.
+                    </p>
+<div class="mt-12 h-1 w-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-tertiary w-0 group-hover:w-full transition-all duration-700"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Branding Accent -->
+<div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+</section>
 <!-- Footer -->
-<footer class="w-full pt-section-gap pb-12 bg-inverse-surface dark:bg-on-background border-t border-outline/20">
+<footer class="w-full pt-section-gap pb-12 bg-inverse-surface border-t border-outline/20">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-7xl mx-auto">
 <div class="col-span-1 md:col-span-2">
-<div class="font-display-2xl text-display-2xl text-surface dark:text-surface-bright opacity-10 mb-8">AutoSales AI</div>
+<div class="font-display-2xl text-display-2xl text-surface opacity-10 mb-8">AutoSales AI</div>
 <p class="font-label-mono text-label-mono text-outline-variant max-w-sm mb-8 leading-relaxed">
-                    © 2024 AutoSales AI. MISSION CRITICAL INFRASTRUCTURE. OPERATING AT THE INTERSECTION OF COMMERCE AND INTELLIGENCE.
-                </p>
+                © 2024 AutoSales AI. MISSION CRITICAL INFRASTRUCTURE. OPERATING AT THE INTERSECTION OF COMMERCE AND INTELLIGENCE.
+            </p>
+<div class="flex gap-4">
+<button class="bg-primary px-6 py-3 rounded-sm text-on-primary font-label-mono uppercase tracking-widest text-xs">
+                    Book a Demo
+                </button>
+</div>
 </div>
 <div>
 <h4 class="font-label-mono text-primary-fixed mb-6 uppercase">Control Center</h4>
 <ul class="space-y-4 font-label-mono text-label-mono text-outline-variant">
-<li class=""><a class="hover:text-primary-fixed-dim underline transition-all cursor-crosshair" href="#">Operational Protocol</a></li>
-<li class=""><a class="hover:text-primary-fixed-dim underline transition-all cursor-crosshair" href="#">Terminal Access</a></li>
-<li class=""><a class="hover:text-primary-fixed-dim underline transition-all cursor-crosshair" href="#">Privacy Matrix</a></li>
+<li><a class="hover:text-primary-fixed-dim underline transition-all cursor-crosshair" href="#">Operational Protocol</a></li>
+<li><a class="hover:text-primary-fixed-dim underline transition-all cursor-crosshair" href="#">Terminal Access</a></li>
+<li><a class="hover:text-primary-fixed-dim underline transition-all cursor-crosshair" href="#">Network Topology</a></li>
+<li><a class="hover:text-primary-fixed-dim underline transition-all cursor-crosshair" href="#">Privacy Matrix</a></li>
 </ul>
 </div>
 <div>
 <h4 class="font-label-mono text-primary-fixed mb-6 uppercase">Mission Stats</h4>
-<p class="font-label-mono text-label-mono text-primary-fixed-dim mb-2">Missed Revenue Recovered: $4.2B+</p>
-<p class="font-label-mono text-label-mono text-tertiary-fixed-dim">Uptime: 99.999%</p>
+<div class="space-y-4">
+<div>
+<p class="font-label-mono text-[10px] text-outline uppercase">Recovered Revenue</p>
+<p class="text-xl font-bold text-primary-fixed-dim">$300,000 / DEALER</p>
+</div>
+<div>
+<p class="font-label-mono text-[10px] text-outline uppercase">Active AI Agents</p>
+<p class="text-xl font-bold text-tertiary-fixed-dim">12,482</p>
+</div>
+<div>
+<p class="font-label-mono text-[10px] text-outline uppercase">Network Uptime</p>
+<p class="text-xl font-bold text-tertiary-fixed-dim">99.9999%</p>
+</div>
+</div>
 </div>
 </div>
 </footer>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Randomly update "live stats" for aesthetic energy
-        const stats = document.querySelectorAll('.font-display-2xl');
-        setInterval(() => {
-            const randomStat = stats[Math.floor(Math.random() * stats.length)];
-            if (randomStat && !randomStat.innerText.includes('$') && !randomStat.innerText.includes('<') && !randomStat.innerText.includes('.') && !randomStat.innerText.includes('%')) {
-                const current = parseInt(randomStat.innerText.replace(/,/g, ''));
-                if (!isNaN(current) && current < 10000) {
-                    randomStat.innerText = (current + 1).toLocaleString();
-                }
-            }
-        }, 3000);
-
         // Pulse effect toggle for random agents
         const pulses = document.querySelectorAll('.ai-pulse');
         setInterval(() => {
