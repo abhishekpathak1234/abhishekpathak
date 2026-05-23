@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AutoSales AI | Mission Critical Automotive Infrastructure</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@300;400;500;600;700&amp;family=Source+Serif+4:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary": "#ab3500",
+                "on-tertiary-container": "#003319",
+                "secondary-fixed-dim": "#b4c5ff",
+                "on-primary-fixed": "#390c00",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#006d3c",
+                "surface-container-low": "#f6f3f2",
+                "surface-dim": "#dcd9d9",
+                "error": "#ba1a1a",
+                "secondary-container": "#0262ff",
+                "tertiary-container": "#00a860",
+                "on-surface-variant": "#5b4138",
+                "surface": "#fcf8f8",
+                "on-secondary-fixed-variant": "#003ea8",
+                "on-primary-fixed-variant": "#832700",
+                "background": "#fcf8f8",
+                "surface-variant": "#e5e2e1",
+                "outline-variant": "#e4beb3",
+                "surface-container-highest": "#e5e2e1",
+                "secondary-fixed": "#dbe1ff",
+                "inverse-primary": "#ffb59d",
+                "on-primary-container": "#541600",
+                "outline": "#8f7066",
+                "on-error": "#ffffff",
+                "on-primary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "inverse-surface": "#313030",
+                "on-background": "#1c1b1b",
+                "on-secondary": "#ffffff",
+                "primary-fixed-dim": "#ffb59d",
+                "primary-container": "#ff5c1a",
+                "tertiary-fixed": "#70fda7",
+                "inverse-on-surface": "#f3f0ef",
+                "surface-tint": "#ab3500",
+                "on-secondary-fixed": "#00174b",
+                "surface-container-high": "#ebe7e7",
+                "surface-bright": "#fcf8f8",
+                "primary-fixed": "#ffdbd0",
+                "on-tertiary-fixed": "#00210e",
+                "on-tertiary-fixed-variant": "#00522c",
+                "secondary": "#004ccb",
+                "on-surface": "#1c1b1b",
+                "error-container": "#ffdad6",
+                "tertiary-fixed-dim": "#51df8e",
+                "on-secondary-container": "#f3f3ff",
+                "surface-container": "#f0edec",
+                "on-error-container": "#93000a",
+                "alpha-blue": "#0ea5e9",
+                "alpha-graphite": "#121212",
+                "alpha-silver": "#e2e8f0"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "gutter": "24px",
+                "section-gap": "120px",
+                "unit": "4px",
+                "margin-desktop": "64px",
+                "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                "body-lg": ["Hanken Grotesk"],
+                "body-md": ["Hanken Grotesk"],
+                "display-2xl-mobile": ["Space Grotesk"],
+                "subheading-serif": ["Source Serif 4"],
+                "headline-lg-mobile": ["Space Grotesk"],
+                "headline-lg": ["Space Grotesk"],
+                "display-2xl": ["Space Grotesk"],
+                "label-mono": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                "body-md": ["15px", {"lineHeight": "1.5", "fontWeight": "450"}],
+                "display-2xl-mobile": ["44px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                "subheading-serif": ["20px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                "display-2xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                "label-mono": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .alpha-glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .ai-pulse {
+            position: relative;
+        }
+        .ai-pulse::after, .ai-pulse::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #ff5c1a;
+            opacity: 0.4;
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.33); }
+            80%, 100% { opacity: 0; }
+        }
+        .floating-notification {
+            animation: float-up-fade 4s ease-out infinite;
+        }
+        @keyframes float-up-fade {
+            0% { transform: translateY(20px); opacity: 0; }
+            10% { transform: translateY(0); opacity: 1; }
+            80% { transform: translateY(-40px); opacity: 1; }
+            100% { transform: translateY(-60px); opacity: 0; }
+        }
+        .text-outline-mask {
+            -webkit-text-stroke: 1px currentColor;
+            -webkit-text-fill-color: transparent;
+        }
+        .grid-bg {
+            background-image: radial-gradient(circle, #ab3500 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .alpha-network-bg {
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(171, 53, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(171, 53, 0, 0.08) 0%, transparent 50%);
+        }
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 45%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 55%
+            );
+            animation: shine 6s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            100% { transform: translateX(100%) translateY(100%); }
+        }
+        .orange-glow {
+            filter: drop-shadow(0 0 10px rgba(255, 92, 26, 0.5));
+        }
+        .hero-vignette {
+            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden min-h-screen">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-2xl border-b border-white/5">
+<div class="flex justify-between items-center px-margin-desktop py-6 w-full max-w-[1440px] mx-auto">
+<div class="font-display-2xl text-headline-lg-mobile text-white tracking-tighter">AutoSales AI</div>
+<div class="hidden md:flex gap-8 font-label-mono text-label-mono uppercase tracking-widest">
+<a class="text-primary border-b-2 border-primary transition-colors duration-300" href="#">Platform</a>
+<a class="text-white/60 hover:text-primary transition-colors duration-300" href="#">Infrastructure</a>
+<a class="text-white/60 hover:text-primary transition-colors duration-300" href="#">Integration</a>
+<a class="text-white/60 hover:text-primary transition-colors duration-300" href="#">Network</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center gap-2 font-label-mono text-label-mono text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary ai-pulse" style="opacity: 0.5;"></span>
+                    System Status: Active
+                </div>
+<button class="bg-primary px-6 py-3 rounded-sm text-on-primary font-label-mono uppercase tracking-widest scale-95 duration-200 ease-in-out active:opacity-80">
+                    Book a Demo
+                </button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative min-h-screen flex items-center overflow-hidden bg-black">
+<!-- Cinematic Backdrop -->
+<div class="absolute inset-0 z-0">
+<img alt="Cinematic AI Infrastructure Backdrop" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-d7jP46je2njwJ03kcG5sIjIDfnXWVJysB7gR4BrL3rPBHKhFHa6kIKXvZILKgwV3BuL8SGQMtnH1brRy8XGIksqlnPOlUm_NBOdCG2ukuSJ2HSbAcODvuBp1WCZ2lCOq3SXGQDIMu4V2E245Mdt95RE-SFG6F6YbJ1eDtgUTQzhIejOIHH3JSXlKA1_gVa1UxOhMC32RQCyd7WZseY0ixiM8jygvRbzyM8IgdfQvImDxfUm0ZgkziZj8XCCNbi6of7OKkM3Ufm4"/>
+<div class="absolute inset-0 hero-vignette"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black"></div>
+</div>
+<!-- Floating Live Notifications -->
+<div class="absolute right-margin-desktop top-40 z-20 space-y-4 hidden lg:block">
+<div class="floating-notification glass-panel px-6 py-4 rounded-lg shadow-2xl border-l-4 border-primary-container max-w-xs">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container orange-glow" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<div>
+<p class="font-label-mono text-[10px] uppercase text-white/50">AI Receptionist</p>
+<p class="text-body-md font-bold text-white">Booked Luxury SUV test drive</p>
+</div>
+</div>
+</div>
+<div class="floating-notification glass-panel px-6 py-4 rounded-lg shadow-2xl border-l-4 border-tertiary max-w-xs animation-delay-1000">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary orange-glow" style="font-variation-settings: 'FILL' 1;">payments</span>
+<div>
+<p class="font-label-mono text-[10px] uppercase text-white/50">Revenue Recovery</p>
+<p class="text-body-md font-bold text-white">Captured $4,200 lost lead</p>
+</div>
+</div>
+</div>
+</div>
+<div class="container mx-auto px-margin-desktop relative z-10 pt-20">
+<div class="flex flex-col lg:flex-row items-center gap-16">
+<div class="lg:w-7/12">
+<div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel mb-8 border border-white/10">
+<span class="w-2 h-2 rounded-full bg-primary-container ai-pulse"></span>
+<span class="font-label-mono text-[10px] uppercase tracking-widest text-white/80">Mission Critical Infrastructure Active</span>
+</div>
+<h1 class="font-display-2xl text-white text-display-2xl-mobile md:text-8xl leading-[0.9] mb-10 font-bold tracking-tight">
+                        AI EMPLOYEES THAT <span class="text-primary italic">SELL CARS</span> WHILE YOU SLEEP
+                    </h1>
+<p class="font-body-lg text-white/70 max-w-xl mb-12 text-xl leading-relaxed">
+                        AutoSales AI answers calls, responds to leads, books appointments, and recovers missed revenue automatically — 24/7.
+                    </p>
+<div class="flex flex-wrap gap-6">
+<button class="bg-primary-container px-12 py-6 rounded-sm text-on-primary-container font-label-mono text-lg uppercase tracking-widest hover:scale-105 transition-transform orange-glow">Book a Demo</button>
+<button class="border border-white/20 glass-panel px-12 py-6 rounded-sm font-label-mono text-lg text-white uppercase tracking-widest hover:bg-white/10 transition-colors">
+                            Technical Specs
+                        </button>
+</div>
+</div>
+<div class="lg:w-5/12 w-full">
+<div class="relative group">
+<!-- Data Widget Reflection Effect -->
+<div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-20 group-hover:opacity-40 transition-opacity"></div>
+<div class="relative rounded-2xl overflow-hidden shadow-2xl border border-white/20 orange-glow">
+<img alt="Mission Control Data Widget" class="w-full h-auto object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDubgPA_JuuWsw_-T7E_tuvXNO_KGlXAFLN-Rqh4GN6345jcSzKOdnGFe0J88Lf42za8Agrpq5SLXLcrz1_JMw5dvXs-jQKJXoT4_O77T_YCsVPnapsFfrsiAJwf8FyW5y5PFk5AHpUlS_zRRgB4etAFiFYW9rAExMxEZGQ8_dvHrnjhh0zUnZ_YTkBvCCBQLgo6EnYmQfHp2Kxe8pXGs1sagyEBtVfkBs7Xno-njv1dM1ef6SWtCB_cp0J7ehh3XM_-p22FIKhsU"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Infrastructure Pillars Section -->
+<section class="py-section-gap bg-background relative overflow-hidden">
+<!-- Technical Grid Decoration -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none grid-bg"></div>
+<div class="container mx-auto px-margin-desktop relative z-10">
+<div class="flex flex-col lg:flex-row gap-gutter items-start">
+<!-- Left Header Area -->
+<div class="lg:w-1/3 sticky top-32">
+<span class="font-label-mono text-primary uppercase tracking-[0.2em] mb-4 block underline decoration-2 underline-offset-8">Infrastructure Pillars</span>
+<h2 class="font-display-2xl text-headline-lg md:text-display-2xl leading-[0.9] mb-8">
+                        BORN FOR<br/>SCALE &amp;<br/><span class="text-outline-mask text-primary">RELIABILITY</span>
+</h2>
+<p class="font-body-lg text-on-surface-variant max-w-sm mb-12">Distribution hijack infrastructure: We don't create demand, we plug into lead marketplaces and phone systems that already exist. A frictionless transition to autonomous high-performance sales.</p>
+<button class="bg-primary px-8 py-4 rounded-sm text-on-primary font-label-mono uppercase tracking-widest hover:opacity-90 transition-opacity">
+                        Book a Demo
+                    </button>
+</div>
+<!-- Right Bold Benefit Area -->
+<div class="lg:w-2/3 space-y-12">
+<!-- Pillar 1 -->
+<div class="relative group">
+<div class="absolute -left-12 top-0 text-[120px] font-display-2xl text-primary/5 leading-none select-none">01</div>
+<div class="glass-panel p-16 rounded-xl shadow-2xl border-l-[12px] border-primary transform transition-transform duration-500 hover:-translate-y-2 hover:shadow-primary/10">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+<div>
+<h3 class="font-display-2xl text-headline-lg md:text-5xl tracking-tighter mb-4 text-on-surface">Native System Integration</h3>
+<p class="font-body-lg text-on-surface-variant max-w-lg">Native bidirectional sync with major dealer platforms. Zero data silos. Our AI lives where your data lives.</p>
+</div>
+<span class="material-symbols-outlined text-6xl text-primary opacity-20 group-hover:opacity-100 transition-opacity" data-weight="fill">hub</span>
+</div>
+<div class="mt-8 flex gap-4">
+<span class="font-label-mono text-[10px] bg-primary/10 text-primary px-3 py-1 rounded">PLATFORM_READY</span>
+<span class="font-label-mono text-[10px] bg-primary/10 text-primary px-3 py-1 rounded">SYSTEM_INTEGRATED</span>
+</div>
+</div>
+</div>
+<!-- Pillar 2 -->
+<div class="relative group translate-x-4">
+<div class="absolute -left-12 top-0 text-[120px] font-display-2xl text-primary/5 leading-none select-none">02</div>
+<div class="bg-on-background text-surface p-16 rounded-xl shadow-2xl border-l-[12px] border-primary-container transform transition-transform duration-500 hover:-translate-y-2 ring-4 ring-primary-container/20">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+<div>
+<h3 class="font-display-2xl text-headline-lg md:text-5xl tracking-tighter mb-4 text-primary-container">Rapid Deployment Protocol</h3>
+<p class="font-body-lg text-surface/70 max-w-lg">Rapid deployment protocol allows your AI workforce to start handling leads today. No months of onboarding.</p>
+</div>
+<span class="material-symbols-outlined text-6xl text-primary-container" data-weight="fill">bolt</span>
+</div>
+<div class="mt-8 flex gap-4">
+<div class="w-full h-1 bg-surface/10 overflow-hidden">
+<div class="h-full bg-primary-container w-[85%] animate-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pillar 3 -->
+<div class="relative group translate-x-8">
+<div class="absolute -left-12 top-0 text-[120px] font-display-2xl text-primary/5 leading-none select-none">03</div>
+<div class="glass-panel p-16 rounded-xl shadow-2xl border-l-[12px] border-tertiary transform transition-transform duration-500 hover:-translate-y-2 hover:shadow-tertiary/10">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+<div>
+<h3 class="font-display-2xl text-headline-lg md:text-5xl tracking-tighter mb-4 text-on-surface">Zero behavior change</h3>
+<p class="font-body-lg text-on-surface-variant max-w-lg">Your sales team keeps their current workflow—they just get more qualified appointments. Frictionless adoption.</p>
+</div>
+<span class="material-symbols-outlined text-6xl text-tertiary opacity-20 group-hover:opacity-100 transition-opacity" data-weight="fill">verified_user</span>
+</div>
+<div class="mt-8">
+<p class="font-label-mono text-tertiary uppercase text-xs">// PROCESS_INTEGRITY: 100%_SECURED</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Receptionist Scene / Workforce Section -->
+<section class="py-section-gap bg-on-background text-surface overflow-hidden">
+<div class="container mx-auto px-margin-desktop">
+<div class="flex flex-col lg:flex-row items-center gap-16 mb-24">
+<div class="lg:w-1/2">
+<span class="font-label-mono text-primary-container uppercase tracking-widest mb-4 block">Operation: AI Workforce</span>
+<h2 class="font-display-2xl text-headline-lg md:text-headline-lg tracking-tight mb-8">Deploying Unlimited Concurrency</h2>
+<p class="font-body-lg text-surface/70 mb-8 max-w-xl">
+                        Our AI Receptionist handles thousands of simultaneous calls with perfect recall, consistent branding, and immediate data synchronization.
+                    </p>
+<div class="flex gap-4">
+<button class="bg-primary-container px-8 py-4 rounded-sm text-on-primary-container font-label-mono uppercase tracking-widest hover:scale-105 transition-transform">Book a Demo</button>
+</div>
+</div>
+<div class="lg:w-1/2 relative">
+<!-- AI Receptionist / Dashboard Visual -->
+<div class="relative rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+<img alt="AI Workforce Dashboard" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugj9la1a5rXVbT3DdPsTfbfp9e-Os-YpoCiJE87jdze5vWUkinct3Ai12kdOQ6XS3VznN7AfH-ZPMiNlX16rogyIfW9Wthr3D13mwQNSKB0t80xaWa9z9GVX0A1RlYv1I9njILn9d0Q90pqoRU_RQGYRDdgRkkFBB7LFfVuegat7KU-pJ4xNx-MuGnDW95w1kApb6-5mB8c90N4-vRHRbQD7d3ExoTOgppUqxa6ZhrPPTCo5ZgM0I6cZLg"/>
+<div class="absolute inset-0 bg-gradient-to-tr from-on-background/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8 p-6 glass-panel border-white/20 rounded-lg max-w-xs">
+<p class="font-label-mono text-primary text-[10px] uppercase mb-2">Active Operations</p>
+<p class="font-bold text-white mb-2">AI Receptionist #42</p>
+<p class="text-sm text-white/60 italic">"I've updated the system with the customer's trade-in details."</p>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<!-- AI Agent Card 1 -->
+<div class="group relative bg-inverse-surface p-12 rounded-lg transition-all duration-500 hover:bg-surface/5">
+<div class="flex justify-between items-start mb-12">
+<div>
+<span class="font-label-mono text-primary-container uppercase tracking-widest mb-2 block">AGENT_TYPE: FRONT_OFFICE</span>
+<h3 class="font-display-2xl text-headline-lg">AI Receptionist</h3>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container font-label-mono text-[10px] rounded-full">ACTIVE_LISTEN</span>
+<span class="px-3 py-1 border border-outline font-label-mono text-[10px] rounded-full text-white/40">24/7_OPS</span>
+</div>
+</div>
+<div class="space-y-6">
+<div class="bg-black/20 p-6 rounded border border-white/5">
+<p class="font-label-mono text-[10px] text-outline uppercase mb-4">Incoming Inquiry</p>
+<div class="flex gap-4 items-start">
+<span class="material-symbols-outlined text-primary-container mt-1">person</span>
+<p class="font-body-lg italic font-light">"Hi, I'm looking for a 2021 BMW M3 in Brooklyn Grey, is it still available?"</p>
+</div>
+<div class="mt-4 flex gap-4 items-start border-t border-white/10 pt-4">
+<span class="material-symbols-outlined text-tertiary mt-1 ai-pulse" style="opacity: 1;">smart_toy</span>
+<p class="font-body-lg italic font-light text-tertiary-fixed-dim">"Excellent choice. We currently have one 2021 BMW M3 in Brooklyn Grey in our premium inventory. It features the Silverstone interior and executive package. Would you like me to schedule a viewing for you today?"</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<div class="text-center p-4 bg-white/5">
+<p class="text-display-2xl text-headline-lg-mobile font-bold">12s</p>
+<p class="font-label-mono text-[9px] text-outline">AVG_RESPONSE</p>
+</div>
+<div class="text-center p-4 bg-white/5">
+<p class="text-display-2xl text-headline-lg-mobile font-bold">98%</p>
+<p class="font-label-mono text-[9px] text-outline">ACCURACY</p>
+</div>
+<div class="text-center p-4 bg-white/5">
+<p class="text-display-2xl text-headline-lg-mobile font-bold">∞</p>
+<p class="font-label-mono text-[9px] text-outline">CONCURRENCY</p>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Agent Card 2 -->
+<div class="group relative bg-inverse-surface p-12 rounded-lg transition-all duration-500 hover:bg-surface/5">
+<div class="flex justify-between items-start mb-12">
+<div>
+<span class="font-label-mono text-primary-container uppercase tracking-widest mb-2 block">AGENT_TYPE: SALES_PIPE</span>
+<h3 class="font-display-2xl text-headline-lg">AI Appointment Setter</h3>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container font-label-mono text-[10px] rounded-full">DATA_WRITE</span>
+<span class="px-3 py-1 border border-outline font-label-mono text-[10px] rounded-full text-white/40">MULTI_LANG</span>
+</div>
+</div>
+<div class="space-y-6">
+<div class="bg-black/20 p-6 rounded border border-white/5">
+<p class="font-label-mono text-[10px] text-outline uppercase mb-4">Last Action</p>
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-tertiary">calendar_today</span>
+<p class="font-body-lg italic font-light">Scheduled Test Drive: Saturday, 2:00 PM (Luxury SUV)</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<div class="text-center p-4 bg-white/5">
+<p class="text-display-2xl text-headline-lg-mobile font-bold">4.2x</p>
+<p class="font-label-mono text-[9px] text-outline">CONV_LIFT</p>
+</div>
+<div class="text-center p-4 bg-white/5">
+<p class="text-display-2xl text-headline-lg-mobile font-bold">100%</p>
+<p class="font-label-mono text-[9px] text-outline">UPTIME</p>
+</div>
+<div class="text-center p-4 bg-white/5">
+<p class="text-display-2xl text-headline-lg-mobile font-bold">24h</p>
+<p class="font-label-mono text-[9px] text-outline">OUTREACH_CYC</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Performance Proof -->
+<section class="py-section-gap bg-background">
+<div class="container mx-auto px-margin-desktop">
+<div class="text-center mb-20">
+<h2 class="font-label-mono text-outline uppercase tracking-[0.4em] mb-4">Verified Operational Metrics</h2>
+<p class="font-body-lg text-on-surface-variant">The numbers behind the billion-dollar infrastructure.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Testimonial 1 -->
+<div class="p-8 border-l-2 border-primary-container bg-surface-container-low shadow-sm">
+<p class="font-body-lg italic mb-8">"Since deploying AutoSales AI, our appointment set rate has increased by 140%. The AI setters are more consistent than our best human BDC agents ever were."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-highest rounded-full overflow-hidden">
+<img alt="Mark Stevenson" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7rBT-U48XfCk7_t-zInO-f_VoyOwAfSfY75RYnZ49VfrkLfOA2TL5n3OKEoL8NtYj0Kao-GjF5_-F3xbmywwGuEvd0YiS-B1QMLV_QWRSKvrndoY3X7nwH36R9doNZTM9lnBDE_6rvVhHGbUFDgWg3US-Oq6AUeedFwGJGLC_lQo6fZArIynxFbZt32-_o64VjcPq6a9HZIadLHI0cs0wNITLgcgq1a3IVt_cR7FxuxEqOVos3U88XxYE-9c8ABPua4uXYUi1NGc"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Mark Stevenson</p>
+<p class="font-label-mono text-[10px] text-outline uppercase">Principal, Premier Ford Group</p>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-outline-variant flex justify-between items-center">
+<span class="font-label-mono text-tertiary text-[10px]">VERIFIED_RESULT</span>
+<span class="font-bold text-tertiary">+140% Conv.</span>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="p-8 border-l-2 border-primary-container bg-surface-container-low shadow-sm">
+<p class="font-body-lg italic mb-8">"The recovery engine alone paid for the entire system in the first week. We recovered 12 leads that had 'fallen through the cracks' and sold 4 cars from them."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-highest rounded-full overflow-hidden">
+<img alt="Sarah Chen" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpfiBPuNMeW2DwO9UJZJTdgJXROsM4syEIHOT1-1fkeES7cjpJw6gDWrPU8GROXhs9Png7mHFhxw451N86XV0UBZAUVGFx_TV7uqGaHA0mrRk3BbFVGm126ysh6JOOwE7ZUeSkcmPo36n60PgIAxGd0x4H-pMZu75rX6H8WMyc8e44TeM_XBYOIO2osFCu45ZH8178ATcpjm1F0K2zJHeY_eZeKDVH6aawelU4t2LCPwo5gwvxQKEgThFZkul7HdJejkVTyexISOw"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Sarah Chen</p>
+<p class="font-label-mono text-[10px] text-outline uppercase">GSM, Luxury Motors</p>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-outline-variant flex justify-between items-center">
+<span class="font-label-mono text-tertiary text-[10px]">VERIFIED_RESULT</span>
+<span class="font-bold text-tertiary">$22k Revenue/Wk</span>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="p-8 border-l-2 border-primary-container bg-surface-container-low shadow-sm">
+<p class="font-body-lg italic mb-8">"Zero training required. It hooked into our dealership instance and started answering phone calls immediately. It's the most frictionless piece of software I've ever used."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container-highest rounded-full overflow-hidden">
+<img alt="James Wilson" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTpO4ja8PKifsaOWlBHQ_PzSJ9C6HUV9-mCIKmrCE9qhSe3M7bysbqRJf0zZSRggbl-_lHwjJWCED9MiYBLuTL39Awn-kd_9LClYiNY8-_5tW-M0nGcAjoxNesRvfNmkpyD-sX2KNv_p-jWNa3FY16Y4Of1FxeQ2gjMEC_foludHMw8YXJNENXPRg27XAiaUNyPPrwRR1FHxiNvOdzWmaqW8Y_uzKWNHzrhEBlA_P7hVEkUTbrnyZtMTQTBAMGU5a4s5rbbNNdYIc"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">James Wilson</p>
+<p class="font-label-mono text-[10px] text-outline uppercase">Director, AutoNation Elite</p>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-outline-variant flex justify-between items-center">
+<span class="font-label-mono text-tertiary text-[10px]">VERIFIED_RESULT</span>
+<span class="font-bold text-tertiary">INSTANT_DEPLOY</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Alpha Drive AI Section (Unified with Kinetic Infrastructure) -->
+<section class="relative bg-black py-section-gap overflow-hidden alpha-network-bg">
+<!-- Branding Accent -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none grid-bg"></div>
+<div class="container mx-auto px-margin-desktop relative z-10">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col items-center text-center mb-32">
+<span class="font-label-mono text-primary uppercase tracking-[0.5em] mb-6 underline decoration-2 underline-offset-8">Autonomous Strategic Layer</span>
+<h2 class="font-display-2xl text-display-2xl-mobile md:text-[120px] leading-[0.85] tracking-tighter mb-12 text-white">
+<span class="block">ALPHA DRIVE</span>
+<span class="text-primary italic">INTELLIGENCE</span>
+</h2>
+<div class="flex flex-wrap justify-center gap-6 mt-4">
+<button class="bg-primary text-on-primary px-12 py-6 rounded-sm font-label-mono text-lg uppercase tracking-widest hover:scale-105 transition-transform duration-300 orange-glow">Deploy AI Workforce</button>
+<button class="bg-transparent border border-white/20 glass-panel text-white px-12 py-6 rounded-sm font-label-mono text-lg uppercase tracking-widest hover:bg-white/10 transition-colors duration-300">Book Strategy Call</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12 font-display-2xl">
+<!-- Advantage 1 -->
+<div class="glass-panel p-12 md:p-16 rounded-lg border-l-[12px] border-primary group hover:-translate-y-2 transition-all duration-500 shadow-xl">
+<div class="mb-12">
+<span class="text-primary/10 text-8xl font-display-2xl leading-none">01</span>
+</div>
+<p class="text-headline-lg md:text-4xl leading-tight text-white tracking-tight font-semibold">
+                            Autonomous AI sales agents that engage, qualify, and book buyers 24/7 — without expanding dealership staff.
+                        </p>
+<div class="mt-12 h-1 w-full bg-white/5 overflow-hidden">
+<div class="h-full bg-primary w-0 group-hover:w-full transition-all duration-700"></div>
+</div>
+</div>
+<!-- Advantage 2 -->
+<div class="bg-on-background text-surface p-12 md:p-16 rounded-lg border-l-[12px] border-primary-container group hover:-translate-y-2 transition-all duration-500 shadow-2xl ring-4 ring-primary-container/10">
+<div class="mb-12">
+<span class="text-primary-container/20 text-8xl font-display-2xl leading-none">02</span>
+</div>
+<p class="text-headline-lg md:text-4xl leading-tight text-surface tracking-tight font-semibold">
+                            Built for automotive retail workflows: inventory discovery, trade-ins, financing assistance, test-drive booking, and instant customer follow-ups.
+                        </p>
+<div class="mt-12 h-1 w-full bg-white/10 overflow-hidden">
+<div class="h-full bg-primary-container w-0 group-hover:w-full transition-all duration-700"></div>
+</div>
+</div>
+<!-- Advantage 3 -->
+<div class="glass-panel p-12 md:p-16 rounded-lg border-l-[12px] border-tertiary group hover:-translate-y-2 transition-all duration-500 shadow-xl">
+<div class="mb-12">
+<span class="text-tertiary/10 text-8xl font-display-2xl leading-none">03</span>
+</div>
+<p class="text-headline-lg md:text-4xl leading-tight text-white tracking-tight font-semibold">
+                            Reduce lead leakage, increase showroom visits, and accelerate vehicle sales with real-time conversational AI automation.
+                        </p>
+<div class="mt-12 h-1 w-full bg-white/5 overflow-hidden">
+<div class="h-full bg-tertiary w-0 group-hover:w-full transition-all duration-700"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Branding Accent -->
+<div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+</section>
+<!-- Footer -->
+<footer class="w-full pt-section-gap pb-12 bg-black border-t border-white/5">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-7xl mx-auto">
+<div class="col-span-1 md:col-span-2">
+<div class="font-display-2xl text-display-2xl text-white opacity-10 mb-8">AutoSales AI</div>
+<p class="font-label-mono text-label-mono text-white/50 max-w-sm mb-8 leading-relaxed">
+                    © 2024 AutoSales AI. MISSION CRITICAL INFRASTRUCTURE. OPERATING AT THE INTERSECTION OF COMMERCE AND INTELLIGENCE.
+                </p>
+<div class="flex gap-4">
+<button class="bg-primary px-6 py-3 rounded-sm text-on-primary font-label-mono uppercase tracking-widest text-xs">
+                        Book a Demo
+                    </button>
+</div>
+</div>
+<div>
+<h4 class="font-label-mono text-primary-fixed mb-6 uppercase">Control Center</h4>
+<ul class="space-y-4 font-label-mono text-label-mono text-white/40">
+<li><a class="hover:text-primary-fixed-dim underline transition-all cursor-crosshair" href="#">Operational Protocol</a></li>
+<li><a class="hover:text-primary-fixed-dim underline transition-all cursor-crosshair" href="#">Terminal Access</a></li>
+<li><a class="hover:text-primary-fixed-dim underline transition-all cursor-crosshair" href="#">Network Topology</a></li>
+<li><a class="hover:text-primary-fixed-dim underline transition-all cursor-crosshair" href="#">Privacy Matrix</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-mono text-primary-fixed mb-6 uppercase">Mission Stats</h4>
+<div class="space-y-4">
+<div>
+<p class="font-label-mono text-[10px] text-white/30 uppercase">Recovered Revenue</p>
+<p class="text-xl font-bold text-primary-fixed-dim">$300,000 / DEALER</p>
+</div>
+<div>
+<p class="font-label-mono text-[10px] text-white/30 uppercase">Active AI Agents</p>
+<p class="text-xl font-bold text-tertiary-fixed-dim">12,482</p>
+</div>
+<div>
+<p class="font-label-mono text-[10px] text-white/30 uppercase">Network Uptime</p>
+<p class="text-xl font-bold text-tertiary-fixed-dim">99.9999%</p>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Pulse effect toggle for random agents
+            const pulses = document.querySelectorAll('.ai-pulse');
+            setInterval(() => {
+                const randomPulse = pulses[Math.floor(Math.random() * pulses.length)];
+                if (randomPulse) {
+                    randomPulse.style.opacity = '0.5';
+                    setTimeout(() => randomPulse.style.opacity = '1', 500);
+                }
+            }, 2000);
+        });
+    </script>
+</body></html>
