@@ -1,0 +1,14 @@
+{
+  "name": "Algo Auto",
+  "short_name": "Algo Auto",
+  "description": "AI employees that answer calls, book appointments, and recover missed revenue for high-performance dealerships, 24/7.",
+  "start_url": "/auto",
+  "scope": "/auto",
+  "display": "standalone",
+  "background_color": "#0a0a1a",
+  "theme_color": "#0a0a1a",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

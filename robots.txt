@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://algobridge.cc/auto/sitemap.xml
