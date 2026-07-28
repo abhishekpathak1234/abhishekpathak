@@ -3,7 +3,7 @@
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>AutoSales AI | Mission Critical Automotive Infrastructure</title>
+<title>Algo Auto | Mission Critical Automotive Infrastructure</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Hanken+Grotesk:wght@300;400;500;600;700&amp;family=Source+Serif+4:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -188,7 +188,7 @@
 <!-- Top Navigation Bar -->
 <nav class="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-2xl border-b border-white/5">
 <div class="flex justify-between items-center px-margin-desktop py-6 w-full max-w-[1440px] mx-auto">
-<div class="font-display-2xl text-headline-lg-mobile text-white tracking-tighter">AutoSales AI</div>
+<div class="font-display-2xl text-headline-lg-mobile text-white tracking-tighter">Algo Auto</div>
 <div class="hidden md:flex gap-8 font-label-mono text-label-mono uppercase tracking-widest">
 <a class="text-primary border-b-2 border-primary transition-colors duration-300" href="#">Platform</a>
 <a class="text-white/60 hover:text-primary transition-colors duration-300" href="#">Infrastructure</a>
@@ -246,7 +246,7 @@
                         AI EMPLOYEES THAT <span class="text-primary italic">SELL CARS</span> WHILE YOU SLEEP
                     </h1>
 <p class="font-body-lg text-white/70 max-w-xl mb-12 text-xl leading-relaxed">
-                        AutoSales AI answers calls, responds to leads, books appointments, and recovers missed revenue automatically — 24/7.
+                        Algo Auto answers calls, responds to leads, books appointments, and recovers missed revenue automatically — 24/7.
                     </p>
 <div class="flex flex-wrap gap-6">
 <button class="bg-primary-container px-12 py-6 rounded-sm text-on-primary-container font-label-mono text-lg uppercase tracking-widest hover:scale-105 transition-transform orange-glow">Book a Demo</button>
@@ -458,7 +458,7 @@
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
 <!-- Testimonial 1 -->
 <div class="p-8 border-l-2 border-primary-container bg-surface-container-low shadow-sm">
-<p class="font-body-lg italic mb-8">"Since deploying AutoSales AI, our appointment set rate has increased by 140%. The AI setters are more consistent than our best human BDC agents ever were."</p>
+<p class="font-body-lg italic mb-8">"Since deploying Algo Auto, our appointment set rate has increased by 140%. The AI setters are more consistent than our best human BDC agents ever were."</p>
 <div class="flex items-center gap-4">
 <div class="w-12 h-12 bg-surface-container-highest rounded-full overflow-hidden">
 <img alt="Mark Stevenson" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7rBT-U48XfCk7_t-zInO-f_VoyOwAfSfY75RYnZ49VfrkLfOA2TL5n3OKEoL8NtYj0Kao-GjF5_-F3xbmywwGuEvd0YiS-B1QMLV_QWRSKvrndoY3X7nwH36R9doNZTM9lnBDE_6rvVhHGbUFDgWg3US-Oq6AUeedFwGJGLC_lQo6fZArIynxFbZt32-_o64VjcPq6a9HZIadLHI0cs0wNITLgcgq1a3IVt_cR7FxuxEqOVos3U88XxYE-9c8ABPua4uXYUi1NGc"/>
@@ -574,9 +574,9 @@
 <footer class="w-full pt-section-gap pb-12 bg-black border-t border-white/5">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-7xl mx-auto">
 <div class="col-span-1 md:col-span-2">
-<div class="font-display-2xl text-display-2xl text-white opacity-10 mb-8">AutoSales AI</div>
+<div class="font-display-2xl text-display-2xl text-white opacity-10 mb-8">Algo Auto</div>
 <p class="font-label-mono text-label-mono text-white/50 max-w-sm mb-8 leading-relaxed">
-                    © 2024 AutoSales AI. MISSION CRITICAL INFRASTRUCTURE. OPERATING AT THE INTERSECTION OF COMMERCE AND INTELLIGENCE.
+                    © 2026 Algo Auto. MISSION CRITICAL INFRASTRUCTURE. OPERATING AT THE INTERSECTION OF COMMERCE AND INTELLIGENCE.
                 </p>
 <div class="flex gap-4">
 <button class="bg-primary px-6 py-3 rounded-sm text-on-primary font-label-mono uppercase tracking-widest text-xs">
