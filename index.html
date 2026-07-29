@@ -253,27 +253,57 @@
 </button>
 </div>
 </div>
-<!-- Mobile Menu Overlay -->
-<div class="fixed inset-0 bg-slate-950 z-[60] transform -translateX-full transition-transform duration-300 ease-in-out hidden flex-col p-8 md:hidden" id="mobile-menu">
-<div class="flex justify-between items-center mb-12">
+</nav>
+<!-- Mobile Menu Overlay (sibling of nav, NOT nested inside it -- nav has backdrop-blur which
+     creates a containing block for position:fixed descendants and breaks full-screen coverage) -->
+<div class="fixed inset-0 bg-slate-950 z-[60] transform -translateX-full transition-transform duration-200 ease-in-out hidden flex-col p-8 overflow-y-auto md:hidden" id="mobile-menu">
+<div class="flex justify-between items-center mb-8 shrink-0">
 <div class="flex items-center">
-<img alt="Algo Auto - AI Employees for Dealerships" class="h-[64px] w-auto shrink-0" loading="lazy" src="assets/algo-auto-logo-v3-final.png">
+<img alt="Algo Auto - AI Employees for Dealerships" class="h-[56px] w-auto shrink-0" loading="lazy" src="assets/algo-auto-logo-v3-final.png">
 </div>
-<button aria-label="Close menu" class="p-2" id="menu-close">
-<span class="material-symbols-outlined text-white" aria-hidden="true">close</span>
+<button aria-label="Close menu" class="p-2 -mr-2 flex items-center justify-center min-w-[44px] min-h-[44px]" id="menu-close">
+<span class="material-symbols-outlined text-white text-2xl" aria-hidden="true">close</span>
 </button>
 </div>
-<div class="flex flex-col gap-6 font-label-mono text-xl uppercase tracking-widest">
-<a class="text-primary" href="#hero">Platform</a>
-<a class="text-slate-300" href="#pillars">Infrastructure</a>
-<a class="text-slate-300" href="#workforce">Integration</a>
-<a class="text-slate-300" href="#intelligence">Network</a>
+<div class="flex flex-col font-label-mono uppercase tracking-widest">
+<div class="border-b border-white/10">
+<button aria-controls="mobile-products-panel" aria-expanded="false" class="w-full flex items-center justify-between py-4 min-h-[44px] text-slate-300 text-lg" id="mobile-products-toggle" type="button">
+Products
+<span aria-hidden="true" class="material-symbols-outlined text-xl transition-transform duration-200" id="mobile-products-chevron">expand_more</span>
+</button>
+<div class="hidden flex-col pb-3 gap-1" id="mobile-products-panel">
+<a class="flex items-center gap-3 py-3 min-h-[44px] rounded-lg hover:bg-white/5 transition-colors" href="/auto">
+<span class="text-xl leading-none shrink-0">🚗</span>
+<span class="flex-1 min-w-0 normal-case tracking-normal">
+<span class="block text-white text-sm font-bold">Algo Auto AI</span>
+<span class="block text-slate-400 text-xs mt-0.5">AI Employees for Dealerships</span>
+</span>
+</a>
+<a class="flex items-center gap-3 py-3 min-h-[44px] rounded-lg hover:bg-white/5 transition-colors" href="/realty">
+<span class="text-xl leading-none shrink-0">🏢</span>
+<span class="flex-1 min-w-0 normal-case tracking-normal">
+<span class="flex items-center gap-2"><span class="text-white text-sm font-bold">Algo Realty AI</span><span class="text-[9px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full uppercase tracking-wider">Soon</span></span>
+<span class="block text-slate-400 text-xs mt-0.5">AI Employees for Real Estate</span>
+</span>
+</a>
+<a class="flex items-center gap-3 py-3 min-h-[44px] rounded-lg hover:bg-white/5 transition-colors" href="/easy-ai">
+<span class="text-xl leading-none shrink-0">⚡</span>
+<span class="flex-1 min-w-0 normal-case tracking-normal">
+<span class="flex items-center gap-2"><span class="text-white text-sm font-bold">Algo Easy AI</span><span class="text-[9px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full uppercase tracking-wider">Soon</span></span>
+<span class="block text-slate-400 text-xs mt-0.5">AI Automation Platform for Small Businesses</span>
+</span>
+</a>
 </div>
-<div class="mt-auto border-t border-white/10 pt-8">
-<a class="w-full bg-primary py-5 rounded-sm text-on-primary font-label-mono uppercase tracking-widest block text-center" href="https://calendly.com/abhishek-algobridge/30min" target="_blank" rel="noopener noreferrer">Book a Demo</a>
+</div>
+<a class="text-primary py-4 min-h-[44px] flex items-center border-b border-white/10 text-lg" href="#hero">Platform</a>
+<a class="text-slate-300 py-4 min-h-[44px] flex items-center border-b border-white/10 text-lg" href="#pillars">Infrastructure</a>
+<a class="text-slate-300 py-4 min-h-[44px] flex items-center border-b border-white/10 text-lg" href="#workforce">Integration</a>
+<a class="text-slate-300 py-4 min-h-[44px] flex items-center text-lg" href="#intelligence">Network</a>
+</div>
+<div class="mt-auto border-t border-white/10 pt-6 shrink-0">
+<a class="w-full bg-primary py-5 min-h-[44px] rounded-sm text-on-primary font-label-mono uppercase tracking-widest flex items-center justify-center text-center" href="https://calendly.com/abhishek-algobridge/30min" target="_blank" rel="noopener noreferrer">Book a Demo</a>
 </div>
 </div>
-</nav>
 <main>
 <!-- Redesigned Hero Section -->
 <header class="global-dark-gradient min-h-screen pt-32 md:pt-48 pb-20 relative overflow-hidden" id="hero">
@@ -828,15 +858,29 @@
             setTimeout(() => {
                 mobileMenu.classList.add('hidden');
                 document.body.style.overflow = '';
-            }, 300);
+            }, 200);
             menuToggle.setAttribute('aria-expanded', 'false');
         };
 
         menuClose.addEventListener('click', closeMenu);
-        
+
         // Close menu when clicking links
         const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // Products accordion
+        const productsToggle = document.getElementById('mobile-products-toggle');
+        const productsPanel = document.getElementById('mobile-products-panel');
+        const productsChevron = document.getElementById('mobile-products-chevron');
+        if (productsToggle && productsPanel && productsChevron) {
+            productsToggle.addEventListener('click', () => {
+                const isOpen = productsToggle.getAttribute('aria-expanded') === 'true';
+                productsToggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+                productsPanel.classList.toggle('hidden', isOpen);
+                productsPanel.classList.toggle('flex', !isOpen);
+                productsChevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
+        }
     });</script>
 
 </body></html>
